@@ -1,0 +1,1901 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>EXCHANGE — легальный обмен крипты в КР</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --bg2: #f0faf7;
+        --nav: #ffffff;
+        --card: #ffffff;
+        --field: #e8f5f1;
+        --blue: #0f4d3f;
+        --blue2: #1abc9c;
+        --text: #1a1a1a;
+        --mute: #666666;
+        --up: #0f8a5f;
+        --down: #d64545;
+        --line: rgba(15, 77, 63, 0.14);
+        --light-green: #e3f5ef;
+        --pale-green: #f6fcfa;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          400 16px/1.55 Manrope,
+          system-ui,
+          sans-serif;
+        overflow-x: hidden;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      :focus-visible {
+        outline: 2px solid #1abc9c;
+        outline-offset: 2px;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: linear-gradient(135deg, #fff 0%, #f0faf7 100%);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        height: 72px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .logo-mark {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #0f4d3f, #1abc9c);
+        color: #fff;
+        font:
+          700 18px Manrope,
+          sans-serif;
+        letter-spacing: 0.02em;
+        flex: none;
+      }
+      .logo-text {
+        font:
+          700 18px Manrope,
+          sans-serif;
+        color: #0f4d3f;
+        white-space: nowrap;
+      }
+      nav.links {
+        display: flex;
+        gap: 26px;
+        margin-left: auto;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      nav.links a {
+        color: #1a1a1a;
+      }
+      nav.links a:hover {
+        color: #006d5b;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1.5px solid #1abc9c;
+        border-radius: 14px;
+        padding: 12px 26px;
+        font:
+          600 16px Manrope,
+          sans-serif;
+        color: #0f4d3f;
+        background: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .btn.fill {
+        background: linear-gradient(135deg, #0f4d3f, #1abc9c);
+        color: white;
+      }
+      .btn.fill:hover {
+        background: linear-gradient(135deg, #1d8c72, #1abc9c);
+      }
+      .btn.line:hover {
+        background: #aedad077;
+      }
+      .burger {
+        display: none;
+        margin-left: auto;
+        width: 42px;
+        height: 42px;
+        padding: 10px 8px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: transparent;
+        border: none;
+        border-radius: 12px;
+        color: #fff;
+        cursor: pointer;
+      }
+      .burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        border-radius: 2px;
+        background: #1a1a1a;
+        transition:
+          transform 0.22s ease,
+          opacity 0.18s ease;
+      }
+      header.open .burger span:first-child {
+        transform: translateY(7px) rotate(45deg);
+      }
+      header.open .burger span:nth-child(2) {
+        opacity: 0;
+      }
+      header.open .burger span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f0faf7 0%, #e8f5f1 50%, #fff 100%);
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -120px;
+        width: 760px;
+        height: 760px;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        border: 34px solid #5ae8c74f;
+        box-shadow:
+          0 0 90px 20px rgba(26, 188, 156, 0.3),
+          inset 0 0 90px rgba(26, 188, 156, 0.3);
+        filter: blur(5px);
+        transform: translateX(-50%) scaleY(0.28);
+      }
+      .hero .wrap {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 56px;
+        align-items: center;
+        padding-top: 80px;
+        padding-bottom: 90px;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: Oswald, Impact, sans-serif;
+        text-transform: uppercase;
+        margin: 0;
+        line-height: 1.02;
+        color: #0f4d3f;
+      }
+      h1 {
+        font-size: clamp(32px, 4.6vw, 66px);
+        font-weight: 700;
+        color: #0f4d3f;
+        letter-spacing: 0.005em;
+        overflow-wrap: break-word;
+      }
+      .hero .wrap > div {
+        min-width: 0;
+      }
+      .lead {
+        font-size: clamp(18px, 1.8vw, 24px);
+        line-height: 1.4;
+        margin: 28px 0 36px;
+        max-width: 620px;
+        color: #666;
+      }
+      .cta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .widget {
+        background: linear-gradient(
+          135deg,
+          var(--light-green),
+          var(--pale-green)
+        );
+        border-radius: 30px;
+        padding: 26px;
+        box-shadow: 0 10px 40px rgba(15, 77, 63, 0.1);
+      }
+      .tabs {
+        display: flex;
+        background: #fff;
+        border-radius: 16px;
+        padding: 5px;
+        gap: 4px;
+      }
+      .tabs button {
+        flex: 1;
+        border: 0;
+        background: none;
+        color: #006d5b;
+        font:
+          600 16px Manrope,
+          sans-serif;
+        padding: 14px 6px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .tabs button[aria-selected="true"] {
+        background: linear-gradient(135deg, #0f4d3f, #1abc9c);
+        color: #fff;
+      }
+      .widget label {
+        display: flex;
+        color: #666;
+        margin: 22px 0 8px;
+        font-size: 17px;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+      }
+      .row input {
+        flex: 1;
+        min-width: 0;
+        background: white;
+        border: 0;
+        border-radius: 14px;
+        padding: 0 22px;
+        height: 64px;
+        color: #006d5b;
+        font:
+          500 22px Manrope,
+          sans-serif;
+      }
+      .sel {
+        position: relative;
+        width: 178px;
+        background: white;
+        border-radius: 14px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .sel select {
+        display: none;
+      }
+      .sel {
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          box-shadow 0.2s;
+      }
+      .sel:hover {
+        background: #2ad5b94f;
+      }
+      .sel.is-open {
+        z-index: 40;
+        box-shadow: 0 0 0 1px rgba(54, 214, 188, 0.459);
+      }
+      .chev-icon {
+        width: 12px;
+        height: 8px;
+        object-fit: contain;
+        margin-left: auto;
+        flex: none;
+        transition: transform 0.22s ease;
+      }
+      .sel.is-open .chev-icon {
+        transform: rotate(180deg);
+      }
+      .currency-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        z-index: 60;
+        padding: 6px;
+        border: 1px solid rgba(15, 77, 63, 0.14);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 18px 42px rgba(15, 77, 63, 0.18);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-7px) scale(0.98);
+        transform-origin: top center;
+        transition:
+          opacity 0.18s ease,
+          transform 0.18s ease,
+          visibility 0.18s;
+        max-height: 260px;
+        overflow-y: auto;
+      }
+      .currency-menu::-webkit-scrollbar {
+        display: none;
+      }
+      .sel.is-open .currency-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+      }
+      .currency-option {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 8px;
+        border: 0;
+        border-radius: 10px;
+        color: var(--text);
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+        font:
+          500 13px/1.25 Manrope,
+          sans-serif;
+        transition: background 0.16s ease;
+      }
+      .currency-option:hover,
+      .currency-option[aria-selected="true"] {
+        background: #45c5b07a;
+      }
+      .currency-option .coin {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+      .currency-option-copy {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .currency-option-copy strong {
+        color: #006d5b;
+      }
+      .currency-option-copy small {
+        color: #666;
+        font-size: 11px;
+      }
+      .coin {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font: 700 14px Manrope;
+        background: transparent;
+        flex: none;
+        overflow: hidden;
+      }
+      .coin img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .sel b {
+        display: block;
+        font-size: 15px;
+        line-height: 1.15;
+        color: #006d5b;
+      }
+      .sel small {
+        color: var(--mute);
+        font-size: 14px;
+      }
+      .chev {
+        margin-left: auto;
+        color: #9aa6a1;
+      }
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 12px 0 28px;
+        color: #666;
+        font-size: 16px;
+      }
+      .meta .t {
+        color: #0f4d3f;
+        font-weight: 600;
+      }
+      .buy {
+        width: 100%;
+        height: 64px;
+        font-size: 20px;
+      }
+      .agree {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        color: var(--mute);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+      .agree input {
+        width: 22px;
+        height: 22px;
+        flex: none;
+        accent-color: #0f4d3f;
+        margin-top: 2px;
+      }
+      .agree u {
+        cursor: pointer;
+        color: #0f4d3f;
+      }
+      .msg {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #d64545;
+        min-height: 20px;
+      }
+      .msg.ok {
+        color: #0f8a5f;
+      }
+      section {
+        padding: 96px 0;
+      }
+      section.alt {
+        background: linear-gradient(135deg, #f0faf7 0%, #e8f5f1 100%);
+      }
+      h2 {
+        font-size: clamp(34px, 4.4vw, 60px);
+        font-weight: 700;
+        margin-bottom: 18px;
+        max-width: 900px;
+      }
+      .sub {
+        color: var(--mute);
+        font-size: 18px;
+        max-width: 680px;
+        margin: 0 0 48px;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+      .steps li {
+        list-style: none;
+        padding: 28px 24px 8px 0;
+        margin-right: 24px;
+        border-right: 1px solid var(--line);
+      }
+      .steps li:last-child {
+        border-right: 0;
+      }
+      .steps ol {
+        padding: 0;
+        margin: 0;
+        display: contents;
+      }
+      .steps .n {
+        font: 600 44px Oswald;
+        color: var(--blue2);
+      }
+      .steps h3 {
+        font-size: 24px;
+        margin: 6px 0 10px;
+      }
+      .steps p {
+        margin: 0;
+        color: var(--mute);
+        font-size: 15px;
+      }
+      .ranex {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .ranex p {
+        color: #555;
+        font-size: 18px;
+      }
+      .check {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 10px 40px rgba(15, 77, 63, 0.1);
+      }
+      .check div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .check div:last-child {
+        border: 0;
+      }
+      .ok {
+        color: #0f8a5f;
+        font-weight: 700;
+      }
+      .warn {
+        color: #b7791f;
+        font-weight: 700;
+      }
+      .feat {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px 40px;
+      }
+      .feat h3 {
+        font-size: 26px;
+        margin-bottom: 10px;
+      }
+      .feat p {
+        margin: 0;
+        color: var(--mute);
+      }
+      .feat svg {
+        width: 30px;
+        height: 30px;
+        stroke: var(--blue2);
+        fill: none;
+        stroke-width: 1.8;
+        margin-bottom: 14px;
+      }
+      .tbl {
+        overflow-x: auto;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(15, 77, 63, 0.08);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 760px;
+      }
+      th,
+      td {
+        padding: 18px 24px;
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+        vertical-align: middle;
+      }
+      th {
+        color: var(--mute);
+        font-weight: 600;
+        font-size: 14px;
+        background: rgba(15, 77, 63, 0.04);
+      }
+      tbody tr {
+        transition: background 0.18s ease;
+      }
+
+      tr:last-child td {
+        border: 0;
+      }
+      .asset {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .asset b {
+        display: block;
+        font-size: 16px;
+        line-height: 1.2;
+        color: #0f4d3f;
+      }
+      .asset small {
+        display: block;
+        color: var(--mute);
+        font-size: 13px;
+      }
+      .rt {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        font-weight: 600;
+        white-space: nowrap;
+        color: #0f4d3f;
+      }
+      .chg {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-style: normal;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .chg i {
+        font-style: normal;
+        font-size: 9px;
+      }
+      .chg.up {
+        color: var(--up);
+        background: rgba(26, 188, 156, 0.16);
+      }
+      .chg.down {
+        color: var(--down);
+        background: rgba(214, 69, 69, 0.12);
+      }
+      .note {
+        color: var(--mute);
+        font-size: 14px;
+        margin-top: 16px;
+      }
+      details {
+        border-bottom: 1px solid var(--line);
+        padding: 22px 0;
+      }
+      summary {
+        cursor: pointer;
+        font: 600 20px Manrope;
+        color: #0f4d3f;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      summary::after {
+        content: "+";
+        color: var(--blue2);
+        font-size: 26px;
+        line-height: 1;
+      }
+      details[open] summary::after {
+        content: "–";
+      }
+      details p {
+        animation: faqTextIn 0.24s ease both;
+      }
+      @keyframes faqTextIn {
+        from {
+          opacity: 0;
+          transform: translateY(-5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      details p {
+        color: var(--mute);
+        margin: 14px 0 0;
+        max-width: 780px;
+      }
+      .faq {
+        max-width: 900px;
+      }
+      .final {
+        text-align: left;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 40px 0;
+        color: var(--mute);
+        font-size: 14px;
+        background: linear-gradient(135deg, #fff 0%, #f0faf7 100%);
+      }
+      footer .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: space-between;
+      }
+      footer nav {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+      footer nav a:hover {
+        color: #006d5b;
+      }
+      footer p {
+        max-width: 620px;
+        margin: 10px 0 0;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(15, 77, 63, 0.45);
+        backdrop-filter: blur(4px);
+      }
+      .modal[hidden] {
+        display: none;
+      }
+      .mbox {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 36px 30px 28px;
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 30px 80px rgba(15, 77, 63, 0.25);
+      }
+      .mbox h3 {
+        font-size: 30px;
+        margin: 20px 0 10px;
+      }
+      .mbox p {
+        margin: 0 0 6px;
+        color: var(--mute);
+        font-size: 15px;
+      }
+      .mbox .sum {
+        color: #0f4d3f;
+        font-weight: 600;
+        font-size: 17px;
+        margin: 14px 0;
+        overflow-wrap: anywhere;
+      }
+      .mbox .btn {
+        width: 100%;
+        margin-top: 18px;
+      }
+      .spin {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto;
+        border-radius: 50%;
+        border: 5px solid rgba(26, 188, 156, 0.22);
+        border-top-color: #1abc9c;
+        animation: sp 1s linear infinite;
+      }
+      @keyframes sp {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .spin {
+          animation-duration: 3s;
+        }
+        .currency-menu,
+        .chev-icon,
+        .burger span,
+        nav.links,
+        details p {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media (max-width: 980px) {
+        .hero .wrap,
+        .ranex {
+          grid-template-columns: 1fr;
+        }
+        nav.links {
+          display: flex;
+          order: 5;
+          width: 100%;
+          margin: 0;
+          flex-direction: column;
+          gap: 0;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-8px);
+          transition:
+            max-height 0.28s ease,
+            opacity 0.2s ease,
+            transform 0.22s ease,
+            visibility 0.28s;
+        }
+        .nav nav.links a {
+          padding: 10px 0;
+        }
+        .burger {
+          display: flex;
+        }
+        .nav {
+          height: auto;
+          min-height: 68px;
+          flex-wrap: wrap;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          gap: 0 16px;
+        }
+        header.open nav.links {
+          max-height: 360px;
+          padding: 12px 0 8px;
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+        .hero .wrap {
+          gap: 36px;
+          padding-bottom: 64px;
+        }
+        .hero::before {
+          width: 520px;
+          height: 520px;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .steps li {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding-bottom: 24px;
+        }
+        .feat {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .wrap {
+          padding: 0 16px;
+        }
+        .hero .wrap {
+          padding-top: 44px;
+        }
+        .steps,
+        .feat {
+          grid-template-columns: 1fr;
+        }
+        .widget {
+          padding: 16px;
+          border-radius: 24px;
+        }
+        .tabs button {
+          font-size: 12px;
+          padding: 10px 4px;
+        }
+        .sel {
+          width: 124px;
+          min-width: 124px;
+          padding: 0 7px;
+          gap: 5px;
+        }
+        .sel small {
+          display: block;
+          font-size: 10px;
+          line-height: 1.2;
+          white-space: normal;
+        }
+        .sel b {
+          font-size: 12px;
+          line-height: 1.2;
+        }
+        .sel > span:nth-child(2) {
+          min-width: 0;
+          flex: 1;
+          overflow-wrap: anywhere;
+        }
+        .row input {
+          font-size: 17px;
+          padding: 0 12px;
+          height: 56px;
+        }
+        .sel {
+          height: 56px;
+        }
+        .coin {
+          width: 28px;
+          height: 28px;
+          font-size: 12px;
+        }
+        .asset .coin {
+          width: 32px;
+          height: 32px;
+        }
+        th,
+        td {
+          padding: 14px 16px;
+        }
+        section {
+          padding: 64px 0;
+        }
+        .logo {
+          gap: 12px;
+        }
+        .logo-mark {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+        .logo-text {
+          font-size: 16px;
+        }
+        .lead {
+          margin: 18px 0 24px;
+          font-size: 17px;
+        }
+        .cta .btn {
+          flex: 1 1 100%;
+        }
+        .widget label {
+          font-size: 15px;
+          margin-top: 16px;
+        }
+        .meta {
+          flex-direction: column;
+          gap: 2px;
+          font-size: 14px;
+        }
+        .buy {
+          height: 56px;
+          font-size: 18px;
+        }
+        .steps li {
+          margin-right: 0;
+          padding-right: 0;
+        }
+        .sub {
+          font-size: 16px;
+          margin-bottom: 32px;
+        }
+        summary {
+          font-size: 17px;
+        }
+        .mbox {
+          padding: 28px 20px 20px;
+        }
+        .mbox h3 {
+          font-size: 26px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .btn {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header >
+      <div class="wrap nav">
+        <a class="logo" href="#top" aria-label="Б.Н. Брокер">
+          <span class="logo-mark">BN</span>
+          <span class="logo-text">Б.Н. Брокер</span>
+        </a>
+
+        <nav class="links" id="links">
+          <a href="#top">Главная</a><a href="#exchange">Обмен</a>
+          <a href="#ranex">Безопасность Ranex</a>
+          <a href="#benefits">Преимущества</a>
+          <a href="#rates">Курсы и лимиты</a><a href="#faq">FAQ</a>
+        </nav>
+
+        <button
+          class="burger"
+          aria-label="Меню"
+          aria-expanded="false"
+          id="burger"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="hero" id="exchange">
+        <div class="wrap">
+          <div>
+            <h1>Легальный и быстрый обмен крипты в КР</h1>
+
+            <p class="lead">
+              Прозрачный сервис обмена виртуальных активов и фиатных средств с
+              гарантией юридической чистоты. Официальные расчеты через
+              банковские счета Оператора.
+            </p>
+
+            <div class="cta">
+              <a class="btn fill" href="#calc">Совершить обмен</a>
+              <a class="btn line" href="#how">Как это работает</a>
+            </div>
+          </div>
+
+          <div class="widget" id="calc">
+            <div class="tabs" role="tablist">
+              <button role="tab" aria-selected="true" data-m="buy">
+                Покупка
+              </button>
+
+              <button role="tab" aria-selected="false" data-m="sell">
+                Продажа
+              </button>
+            </div>
+
+            <label for="giveAmt">Вы отдаете</label>
+
+            <div class="row">
+              <input
+                id="giveAmt"
+                inputmode="decimal"
+                value="20000"
+                autocomplete="off"
+              />
+
+              <div class="sel">
+                <span class="coin" id="giveIco"></span>
+                <span><b id="giveCode"></b><small id="giveName"></small></span>
+
+                <img
+                  class="chev-icon"
+                  src="data:image/svg+xml,%3csvg%20width='13'%20height='8'%20viewBox='0%200%2013%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.06066%201.06066L6.56066%206.56066L11.5607%201.06066'%20stroke-width='1.5'%20stroke-linecap='square'%20stroke='%23979797'/%3e%3c/svg%3e"
+                  alt=""
+                  aria-hidden="true"
+                />
+
+                <select
+                  id="giveSel"
+                  aria-label="Валюта, которую вы отдаете"
+                ></select>
+              </div>
+            </div>
+
+            <label for="getAmt">Вы получаете</label>
+
+            <div class="row">
+              <input id="getAmt" readonly />
+
+              <div class="sel">
+                <span class="coin" id="getIco"></span>
+                <span><b id="getCode"></b><small id="getName"></small></span>
+                <img
+                  class="chev-icon"
+                  src="data:image/svg+xml,%3csvg%20width='13'%20height='8'%20viewBox='0%200%2013%208'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M1.06066%201.06066L6.56066%206.56066L11.5607%201.06066'%20stroke-width='1.5'%20stroke-linecap='square'%20stroke='%23979797'/%3e%3c/svg%3e"
+                  alt=""
+                  aria-hidden="true"
+                />
+
+                <select
+                  id="getSel"
+                  aria-label="Валюта, которую вы получаете"
+                ></select>
+              </div>
+            </div>
+
+            <div class="meta">
+              <span id="rate"></span>
+              <span class="t"
+                >Фиксация курса: <span id="timer">15:00</span></span
+              >
+            </div>
+
+            <button class="btn fill buy" id="go">Купить сейчас</button>
+
+            <label class="agree" style="margin-top: 20px"
+              ><input type="checkbox" id="agree" /><span
+                >Нажимая на кнопку, я соглашаюсь с
+                <u>Условиями использования</u>,
+                <u>Политикой конфиденциальности</u> и
+                <u>Правилами AML/KYC</u></span
+              ></label
+            >
+
+            <div class="msg" id="msg" role="status"></div>
+          </div>
+        </div>
+      </div>
+
+      <section id="how">
+        <div class="wrap">
+          <h2>Как проходит обмен</h2>
+
+          <p class="sub">
+            Платформа не хранит ваши средства: заявки исполняет Оператор со
+            своих счетов и адресов.
+          </p>
+
+          <div class="steps">
+            <ol>
+              <li>
+                <div class="n">1</div>
+                <h3>Заявка</h3>
+                <p>
+                  Выберите направление, сумму и сеть. Курс фиксируется на 15
+                  минут.
+                </p>
+              </li>
+
+              <li>
+                <div class="n">2</div>
+                <h3>Проверка Ranex</h3>
+                <p>
+                  Адрес кошелька проверяется по TxID до выдачи реквизитов на
+                  оплату.
+                </p>
+              </li>
+
+              <li>
+                <div class="n">3</div>
+                <h3>Оплата</h3>
+                <p>Переведите средства на указанный счёт Оператора.</p>
+              </li>
+
+              <li>
+                <div class="n">4</div>
+                <h3>Получение</h3>
+                <p>
+                  Получите актив или фиат на свой кошелёк или банковский счёт.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="alt" id="ranex">
+        <div class="wrap ranex">
+          <div>
+            <h2>Каждый адрес проверяется через Ranex</h2>
+
+            <p>
+              Перед сделкой мы оцениваем риск кошелька: связи с даркнетом,
+              санкционными списками и мошенническими схемами. Входящие и
+              исходящие транзакции проверяются по TxID.
+            </p>
+
+            <p>
+              Если риск выше допустимого порога, заявка приостанавливается и
+              передаётся комплаенс-офицеру.
+            </p>
+          </div>
+
+          <div class="check" aria-label="Пример проверки адреса">
+            <div>
+              <span>Санкционные перечни</span><span class="ok">Чисто</span>
+            </div>
+            <div><span>Даркнет-сервисы</span><span class="ok">Чисто</span></div>
+            <div>
+              <span>Мошеннические схемы</span><span class="ok">Чисто</span>
+            </div>
+            <div>
+              <span>Итоговый риск-скор</span><span class="ok">Низкий</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="benefits">
+        <div class="wrap">
+          <h2>Почему нам доверяют</h2>
+
+          <p class="sub">
+            Сервис работает по закону КР «О виртуальных активах» и требованиям к
+            операторам обмена.
+          </p>
+
+          <div class="feat">
+            <div>
+              <svg viewBox="0 0 30 30">
+                <path d="M15 3 5 7v7c0 6 4 10 10 13 6-3 10-7 10-13V7z" />
+                <path d="m10 15 4 4 7-8" />
+              </svg>
+              <h3>Лицензия Оператора</h3>
+              <p>
+                Деятельность лицензированного оператора обмена виртуальных
+                активов Кыргызской Республики.
+              </p>
+            </div>
+
+            <div>
+              <svg viewBox="0 0 30 30">
+                <rect x="4" y="12" width="22" height="14" rx="2" />
+                <path d="M9 12V8a6 6 0 0 1 12 0v4" />
+              </svg>
+              <h3>Без кастодиального хранения</h3>
+              <p>
+                Мы не открываем кошельки и не держим ваши деньги на балансе
+                платформы.
+              </p>
+            </div>
+
+            <div>
+              <svg viewBox="0 0 30 30">
+                <path d="M4 22 11 14l5 5 10-12" />
+                <path d="M20 7h6v6" />
+              </svg>
+              <h3>Фиксация курса</h3>
+              <p>
+                Курс и комиссия известны до подтверждения заявки и закреплены
+                таймером.
+              </p>
+            </div>
+
+            <div>
+              <svg viewBox="0 0 30 30">
+                <rect x="6" y="3" width="18" height="24" rx="2" />
+                <path d="M10 10h10M10 15h10M10 20h6" />
+              </svg>
+              <h3>Акт по каждой сделке</h3>
+              <p>
+                После исполнения вы получаете подтверждение с видом актива и
+                суммой в фиате.
+              </p>
+            </div>
+
+            <div>
+              <svg viewBox="0 0 30 30">
+                <circle cx="15" cy="15" r="11" />
+                <path d="M15 8v7l5 3" />
+              </svg>
+              <h3>Статусы в реальном времени</h3>
+              <p>
+                Уведомления на email и в кабинете на каждом шаге: от оплаты до
+                исполнения.
+              </p>
+            </div>
+
+            <div>
+              <svg viewBox="0 0 30 30">
+                <circle cx="11" cy="15" r="6" />
+                <path d="M17 15h10M23 15v5" />
+              </svg>
+              <h3>Двухфакторная защита</h3>
+              <p>
+                Создание заявок и смена реквизитов подтверждаются через 2FA.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alt" id="rates">
+        <div class="wrap">
+          <h2>Курсы и лимиты</h2>
+
+          <p class="sub">
+            Лимиты зависят от типа клиента и уровня проверки. Операции выше
+            порога проходят проверку комплаенс-офицера.
+          </p>
+
+          <div class="tbl">
+            <table>
+              <thead>
+                <tr>
+                  <th>Актив</th>
+                  <th>Курс покупки</th>
+                  <th>Курс продажи</th>
+                  <th>Комиссия</th>
+                  <th>Лимит на операцию</th>
+                </tr>
+              </thead>
+
+              <tbody id="rtb"></tbody>
+            </table>
+          </div>
+
+          <p class="note">
+            Показаны ориентировочные значения. Изменение курса указано за 24
+            часа. Итоговый курс и комиссия фиксируются при создании заявки.
+          </p>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="wrap faq">
+          <h2>Частые вопросы</h2>
+
+          <details>
+            <summary>Хранит ли платформа мои средства?</summary>
+            <p>
+              Нет. Платформа регистрирует заявки, а сделки совершает Оператор от
+              своего имени через собственные банковские счета и адреса
+              виртуальных активов.
+            </p>
+          </details>
+
+          <details>
+            <summary>Зачем нужна проверка?</summary>
+            <p>
+              Закон требует идентифицировать клиентов для предотвращения рисков.
+            </p>
+          </details>
+
+          <details>
+            <summary>Что если курс изменился за время оплаты?</summary>
+            <p>
+              Курс фиксируется на 15 минут. По истечении времени заявка
+              аннулируется или пересчитывается по актуальному курсу.
+            </p>
+          </details>
+
+          <details>
+            <summary>Достаточно ли чека о переводе?</summary>
+            <p>
+              Чек или скриншот носит информационный характер. Оплатой считается
+              поступление средств на счёт Оператора по банковской выписке.
+            </p>
+          </details>
+
+          <details>
+            <summary>Почему заявку могут приостановить?</summary>
+            <p>
+              Если проверка Ranex показала повышенный риск адреса или
+              транзакции, заявка передаётся комплаенс-офицеру. Вы получите
+              уведомление и контакты поддержки.
+            </p>
+          </details>
+
+          <details>
+            <summary>Куда выплачивается фиат при продаже актива?</summary>
+            <p>
+              Только на ваш собственный банковский счёт, реквизиты которого
+              указаны при оформлении заявки.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="alt final" id="start">
+        <div class="wrap">
+          <h2>Начните обмен за несколько минут</h2>
+
+          <p class="sub">
+            Выберите направление в калькуляторе выше и оформите первую заявку.
+          </p>
+
+          <div class="cta">
+            <a class="btn fill" href="#calc">Перейти к обмену</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div>
+          <a class="logo" href="#top">EXCHANGE</a>
+
+          <p>
+            Оператор обмена виртуальных активов Кыргызской Республики.
+            Виртуальные активы связаны с рисками: ознакомьтесь с уведомлением о
+            рисках до первой сделки.
+          </p>
+        </div>
+
+        <nav>
+          <a href="#">Условия использования</a>
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Правила AML/KYC</a><a href="#">Уведомление о рисках</a>
+        </nav>
+      </div>
+    </footer>
+
+    <div class="modal" id="modal" hidden>
+      <div
+        class="mbox"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mTitle"
+      >
+        <div class="spin" aria-hidden="true"></div>
+
+        <h3 id="mTitle">Ваша заявка обрабатывается</h3>
+
+        <div class="sum" id="mSum"></div>
+
+        <p>Мы проверим адрес через Ranex и пришлём статус на email.</p>
+
+        <button class="btn fill" id="mOk">Понятно</button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var $ = function (i) {
+          return document.getElementById(i);
+        };
+
+        var IMG = "./assets/img/";
+
+        var ICONS = {
+          KGS: IMG + "kg.svg",
+          USD: IMG + "usa.png",
+          RUB: IMG + "russia.png",
+          USDT: IMG + "usdt.png",
+          BTC: IMG + "btc.webp",
+          ETH: IMG + "eth.png",
+          BCH: IMG + "bch.png",
+          SOL: IMG + "sol.png",
+          LTC: IMG + "lts.jpg",
+        };
+
+        var FIAT = {
+          KGS: ["Сом КР", "C"],
+          USD: ["US Dollar", "$"],
+          RUB: ["Рубль", "₽"],
+        };
+
+        var VA = {
+          USDT: ["Tether", "T", 1],
+          BTC: ["Bitcoin", "₿", null],
+          ETH: ["Ethereum", "Ξ", null],
+          BCH: ["Bitcoin Cash", "B", null],
+          SOL: ["Solana", "S", null],
+          LTC: ["Litecoin", "Ł", null],
+        };
+
+        var USD = {
+            USDT: 1,
+            BTC: 67500,
+            ETH: 2450,
+            BCH: 480,
+            SOL: 165,
+            LTC: 85,
+          },
+          FX = { KGS: 87.5, USD: 1, RUB: 92 };
+
+        var CHANGE = {
+          USDT: { buy: 0.02, sell: -0.01 },
+          BTC: { buy: 2.14, sell: 1.87 },
+          ETH: { buy: -1.32, sell: -1.58 },
+          BCH: { buy: 3.46, sell: 3.12 },
+          SOL: { buy: -2.75, sell: -3.04 },
+          LTC: { buy: 0.84, sell: 0.51 },
+        };
+
+        var LIMITS = {
+          USDT: "до 1 000 000 с",
+          BTC: "до 2 000 000 с",
+          ETH: "до 2 000 000 с",
+          BCH: "до 1 500 000 с",
+          SOL: "до 1 500 000 с",
+          LTC: "до 1 500 000 с",
+        };
+
+        var FEE = 0.01,
+          mode = "buy",
+          left = 900;
+
+        function iconNode(code) {
+          var img = document.createElement("img");
+          img.src = ICONS[code];
+          img.alt = code;
+          img.width = 34;
+          img.height = 34;
+          img.decoding = "async";
+          return img;
+        }
+
+        function setIcon(el, code) {
+          el.innerHTML = "";
+          el.appendChild(iconNode(code));
+        }
+
+        function opts(sel, obj, cur) {
+          sel.innerHTML = "";
+
+          Object.keys(obj).forEach(function (k) {
+            var o = document.createElement("option");
+            o.value = k;
+            o.textContent = k + " — " + obj[k][0];
+            sel.appendChild(o);
+          });
+
+          sel.value = cur;
+        }
+
+        function meta(code) {
+          return FIAT[code] || VA[code];
+        }
+
+        function setSide(side, code) {
+          $(side + "Code").textContent = code;
+          $(side + "Name").textContent = meta(code)[0];
+          setIcon($(side + "Ico"), code);
+        }
+
+        function renderCurrencyMenu(side) {
+          var select = $(side + "Sel");
+          var box = select.closest(".sel");
+          var menu = box.querySelector(".currency-menu");
+
+          if (!menu) {
+            menu = document.createElement("div");
+            menu.className = "currency-menu";
+            menu.setAttribute("role", "listbox");
+            box.appendChild(menu);
+            box.setAttribute("tabindex", "0");
+            box.setAttribute("role", "button");
+            box.setAttribute("aria-haspopup", "listbox");
+            box.setAttribute("aria-expanded", "false");
+
+            box.addEventListener("click", function (event) {
+              if (event.target.closest(".currency-option")) return;
+              var isOpen = box.classList.contains("is-open");
+              closeCurrencyMenus();
+              if (!isOpen) {
+                box.classList.add("is-open");
+                box.setAttribute("aria-expanded", "true");
+              }
+            });
+
+            box.addEventListener("keydown", function (event) {
+              if (event.key === "Enter" || event.key === " ") {
+                if (event.target === box) {
+                  event.preventDefault();
+                  box.click();
+                }
+              }
+              if (event.key === "Escape") {
+                box.classList.remove("is-open");
+                box.setAttribute("aria-expanded", "false");
+              }
+            });
+          }
+
+          menu.innerHTML = "";
+          Array.prototype.forEach.call(select.options, function (option) {
+            var code = option.value;
+            var details = meta(code);
+            var item = document.createElement("button");
+            var icon = document.createElement("span");
+            var copy = document.createElement("span");
+            var codeLabel = document.createElement("strong");
+            var nameLabel = document.createElement("small");
+
+            item.type = "button";
+            item.className = "currency-option";
+            item.setAttribute("role", "option");
+            item.setAttribute(
+              "aria-selected",
+              code === select.value ? "true" : "false",
+            );
+            icon.className = "coin";
+            setIcon(icon, code);
+            copy.className = "currency-option-copy";
+            codeLabel.textContent = code;
+            nameLabel.textContent = details[0];
+            copy.appendChild(codeLabel);
+            copy.appendChild(nameLabel);
+            item.appendChild(icon);
+            item.appendChild(copy);
+
+            item.addEventListener("click", function (event) {
+              event.stopPropagation();
+              select.value = code;
+              calc();
+              renderCurrencyMenu(side);
+              closeCurrencyMenus();
+            });
+
+            menu.appendChild(item);
+          });
+        }
+
+        function closeCurrencyMenus() {
+          document.querySelectorAll(".sel.is-open").forEach(function (box) {
+            box.classList.remove("is-open");
+            box.setAttribute("aria-expanded", "false");
+          });
+        }
+
+        function price(c) {
+          return FIAT[c] ? 1 / FX[c] : USD[c];
+        }
+
+        function fmt(n) {
+          var d = n >= 100 ? 2 : n >= 1 ? 4 : 8;
+          return n.toLocaleString("ru-RU", { maximumFractionDigits: d });
+        }
+
+        function chg(v) {
+          var up = v >= 0;
+          var txt =
+            (up ? "+" : "−") +
+            Math.abs(v).toLocaleString("ru-RU", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }) +
+            "%";
+          return (
+            '<em class="chg ' +
+            (up ? "up" : "down") +
+            '"><i>' +
+            (up ? "▲" : "▼") +
+            "</i>" +
+            txt +
+            "</em>"
+          );
+        }
+
+        function setup() {
+          var g, r;
+
+          if (mode === "buy") {
+            g = Object.keys(FIAT);
+            r = Object.keys(VA);
+          } else if (mode === "sell") {
+            g = Object.keys(VA);
+            r = Object.keys(FIAT);
+          } else {
+            g = Object.keys(VA);
+            r = Object.keys(VA);
+          }
+
+          var gc = $("giveSel").value,
+            rc = $("getSel").value;
+
+          opts($("giveSel"), pick(g), g.indexOf(gc) > -1 ? gc : g[0]);
+
+          opts(
+            $("getSel"),
+            pick(r),
+            r.indexOf(rc) > -1 ? rc : mode === "swap" ? r[1] : r[0],
+          );
+
+          renderCurrencyMenu("give");
+          renderCurrencyMenu("get");
+
+          $("go").textContent = {
+            buy: "Купить сейчас",
+            sell: "Продать сейчас",
+            swap: "Обменять сейчас",
+          }[mode];
+
+          calc();
+        }
+
+        function pick(keys) {
+          var o = {};
+          keys.forEach(function (k) {
+            o[k] = meta(k);
+          });
+          return o;
+        }
+
+        function calc() {
+          var g = $("giveSel").value,
+            r = $("getSel").value;
+
+          setSide("give", g);
+          setSide("get", r);
+
+          var amt =
+            parseFloat(
+              $("giveAmt").value.replace(/\s/g, "").replace(",", "."),
+            ) || 0;
+
+          var k = price(g) / price(r);
+
+          $("getAmt").value =
+            amt > 0 && g !== r ? fmt(amt * k * (1 - FEE)) : "";
+
+          var va = mode === "buy" ? r : g,
+            fi = mode === "buy" ? g : r;
+
+          $("rate").textContent =
+            mode === "swap"
+              ? "Курс: 1 " + g + " = " + fmt(k) + " " + r
+              : "Курс: 1 " + va + " = " + fmt(price(va) * FX[fi]) + " " + fi;
+        }
+
+        document.querySelectorAll(".tabs button").forEach(function (b) {
+          b.onclick = function () {
+            document.querySelectorAll(".tabs button").forEach(function (x) {
+              x.setAttribute("aria-selected", x === b);
+            });
+            mode = b.dataset.m;
+            setup();
+            reset();
+          };
+        });
+
+        $("giveSel").onchange = $("getSel").onchange = function () {
+          calc();
+          renderCurrencyMenu(this.id === "giveSel" ? "give" : "get");
+        };
+
+        $("giveAmt").oninput = calc;
+
+        document.addEventListener("click", function (event) {
+          if (!event.target.closest(".sel")) closeCurrencyMenus();
+        });
+
+        function tick() {
+          left--;
+          if (left < 0) left = 900;
+          $("timer").textContent =
+            String(Math.floor(left / 60)).padStart(2, "0") +
+            ":" +
+            String(left % 60).padStart(2, "0");
+        }
+
+        function reset() {
+          left = 900;
+          $("timer").textContent = "15:00";
+        }
+
+        setInterval(tick, 1000);
+
+        $("go").onclick = function () {
+          var m = $("msg");
+
+          m.className = "msg";
+
+          if (!$("agree").checked) {
+            m.textContent =
+              "Подтвердите согласие с условиями и правилами AML/KYC.";
+            return;
+          }
+
+          if (!$("getAmt").value) {
+            m.textContent = "Укажите сумму и разные валюты.";
+            return;
+          }
+
+          m.textContent = "";
+
+          $("mSum").textContent =
+            $("giveAmt").value +
+            " " +
+            $("giveSel").value +
+            " → " +
+            $("getAmt").value +
+            " " +
+            $("getSel").value;
+
+          $("modal").hidden = false;
+          document.body.style.overflow = "hidden";
+          $("mOk").focus();
+        };
+
+        function closeM() {
+          $("modal").hidden = true;
+          document.body.style.overflow = "";
+          $("go").focus();
+        }
+
+        $("mOk").onclick = closeM;
+
+        $("modal").onclick = function (e) {
+          if (e.target === this) closeM();
+        };
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !$("modal").hidden) closeM();
+        });
+
+        $("rtb").innerHTML = Object.keys(VA)
+          .map(function (k) {
+            var p = USD[k] * FX.KGS;
+            return (
+              '<tr><td><div class="asset"><span class="coin"><img src="' +
+              ICONS[k] +
+              '" alt="' +
+              k +
+              '" width="34" height="34" decoding="async" /></span><span><b>' +
+              k +
+              "</b><small>" +
+              VA[k][0] +
+              '</small></span></div></td><td><div class="rt"><span>' +
+              fmt(p * 1.005) +
+              " с</span>" +
+              chg(CHANGE[k].buy) +
+              '</div></td><td><div class="rt"><span>' +
+              fmt(p * 0.995) +
+              " с</span>" +
+              chg(CHANGE[k].sell) +
+              "</div></td><td>1%</td><td>" +
+              LIMITS[k] +
+              "</td></tr>"
+            );
+          })
+          .join("");
+
+        $("burger").onclick = function () {
+          var h = document.querySelector("header");
+          var o = h.classList.toggle("open");
+          this.setAttribute("aria-expanded", o);
+          this.setAttribute("aria-label", o ? "Закрыть меню" : "Открыть меню");
+        };
+
+        document.querySelectorAll("nav.links a").forEach(function (a) {
+          a.onclick = function () {
+            var header = document.querySelector("header");
+            header.classList.remove("open");
+            $("burger").setAttribute("aria-expanded", "false");
+          };
+        });
+
+        document
+          .querySelectorAll("details > summary")
+          .forEach(function (summary) {
+            summary.addEventListener("click", function (event) {
+              event.preventDefault();
+              var details = summary.parentElement;
+              var opening = !details.open;
+              var startHeight = summary.offsetHeight;
+              var endHeight;
+
+              if (opening) {
+                details.open = true;
+                endHeight = details.scrollHeight;
+                details.style.height = startHeight + "px";
+              } else {
+                endHeight = startHeight;
+                details.style.height = details.scrollHeight + "px";
+              }
+
+              details.style.overflow = "hidden";
+              var animation = details.animate(
+                [
+                  {
+                    height:
+                      (opening ? startHeight : details.scrollHeight) + "px",
+                  },
+                  { height: (opening ? endHeight : startHeight) + "px" },
+                ],
+                { duration: 240, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" },
+              );
+
+              animation.onfinish = function () {
+                if (!opening) details.open = false;
+                details.style.height = "";
+                details.style.overflow = "";
+              };
+            });
+          });
+
+        setup();
+      })();
+    </script>
+  </body>
+</html>
